@@ -28,7 +28,7 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(377, 52)
+        Me.Label1.Location = New System.Drawing.Point(651, 84)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(128, 15)
         Me.Label1.TabIndex = 0
@@ -38,7 +38,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(967, 637)
+        Me.ClientSize = New System.Drawing.Size(1409, 669)
         Me.Controls.Add(Me.Label1)
         Me.Name = "Form1"
         Me.Text = "Form1"
