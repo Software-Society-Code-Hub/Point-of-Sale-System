@@ -8,3 +8,4 @@ D:\VS Community\source\POS\obj\Debug\POS.vbproj.GenerateResource.cache
 D:\VS Community\source\POS\obj\Debug\POS.exe
 D:\VS Community\source\POS\obj\Debug\POS.xml
 D:\VS Community\source\POS\obj\Debug\POS.pdb
+D:\VS Community\source\POS\obj\Debug\POS.Form1.resources
