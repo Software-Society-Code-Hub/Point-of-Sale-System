@@ -2,6 +2,7 @@
 Imports System.Data.OleDb
 Public Class Form1
     Public currentUser As String
+    Public currentPriv As String
     Public defaultUser As String = "admin"
     Public defaultPass As String = "admin"
 
@@ -23,18 +24,23 @@ Public Class Form1
 
         Dim userDB As String = ""
         Dim passDB As String = ""
+        Dim privDB As String = ""
         While dr.Read
             userDB = dr("username").ToString
             passDB = dr("password").ToString
+            privDB = dr("privilege").ToString
         End While
         myConnection.Close()
 
         If userPrompt = defaultUser And passPrompt = defaultPass Then
             currentUser = defaultUser
             MsgBox("Hello " + currentUser)
+            Form3.Show()
         ElseIf userPrompt = userDB And passPrompt = passDB Then
             currentUser = userDB
+            currentPriv = privDB
             MsgBox("Hello " + currentUser)
+            Form3.Show()
         Else
             MsgBox("invalid credentials")
         End If
