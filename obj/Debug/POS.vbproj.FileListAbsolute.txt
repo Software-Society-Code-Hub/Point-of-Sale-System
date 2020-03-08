@@ -9,3 +9,5 @@ D:\VS Community\source\POS\obj\Debug\POS.exe
 D:\VS Community\source\POS\obj\Debug\POS.xml
 D:\VS Community\source\POS\obj\Debug\POS.pdb
 D:\VS Community\source\POS\obj\Debug\POS.Form1.resources
+D:\VS Community\source\POS\obj\Debug\POS.Form2.resources
+D:\VS Community\source\POS\obj\Debug\POS.Form3.resources
