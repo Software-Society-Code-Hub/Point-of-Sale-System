@@ -14,5 +14,23 @@ Public Class Form2
         conString = provider & dataFile
         myConnection.ConnectionString = conString
         myConnection.Open()
+
+        Dim insertcmd As String = "INSERT INTO userList([username], [password], [privilege]) Values (?, ?, ?)"
+        Dim cmd As OleDbCommand = New OleDbCommand(insertcmd, myConnection)
+        cmd.Parameters.Add(New OleDbParameter("username", CType(TextBox1.Text, String)))
+        cmd.Parameters.Add(New OleDbParameter("password", CType(TextBox2.Text, String)))
+        cmd.Parameters.Add(New OleDbParameter("privilege", CType(TextBox3.Text, String)))
+
+        Try
+            cmd.ExecuteNonQuery()
+            cmd.Dispose()
+            myConnection.Close()
+            TextBox1.Clear()
+            TextBox2.Clear()
+            TextBox3.Clear()
+            MsgBox("Account created")
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class
