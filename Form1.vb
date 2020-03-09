@@ -22,9 +22,9 @@ Public Class Form1
         Dim cmd As OleDbCommand = New OleDbCommand("Select * FROM [userList] WHERE [username] = '" & TextBox1.Text & "' AND [password] = '" & TextBox2.Text & "' ", myConnection)
         Dim dr As OleDbDataReader = cmd.ExecuteReader
 
-        Dim userDB As String = ""
-        Dim passDB As String = ""
-        Dim privDB As String = ""
+        Dim userDB As String = vbNull
+        Dim passDB As String = vbNull
+        Dim privDB As String = vbNull
         While dr.Read
             userDB = dr("username").ToString
             passDB = dr("password").ToString
