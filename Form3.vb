@@ -5,6 +5,7 @@ Imports System.Data.DataTable
 Public Class Form3
     Public currentUser As String = Form1.currentUser
     Public currentPriv As String = Form1.currentPriv
+    Public checkArr As New ArrayList
 
     Dim provider As String
     Dim dataFile As String
@@ -18,14 +19,13 @@ Public Class Form3
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim barCodePrompt As String = TextBox1.Text
-        Dim productNamePrompt As String = TextBox2.Text
+        Dim productPrompt As String = TextBox2.Text
         provider = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source="
         dataFile = "../../db/itemDB.accdb"
         conString = provider & dataFile
         myConnection.ConnectionString = conString
         myConnection.Open()
-        Dim cmd As OleDbCommand = New OleDbCommand("Select * FROM [itemList] WHERE [Product BarCode] = '" & TextBox1.Text & "' OR [Product Name] = '" & TextBox2.Text & "' ", myConnection)
+        Dim cmd As OleDbCommand = New OleDbCommand("Select * FROM [itemList] WHERE [Product BarCode] = '" & TextBox2.Text & "' OR [Product Name] = '" & TextBox2.Text & "' ", myConnection)
         Dim dr As OleDbDataReader = cmd.ExecuteReader
 
         Dim barCode As String = vbNull
@@ -33,6 +33,7 @@ Public Class Form3
         Dim productType As String = vbNull
         Dim productPrice As Integer = vbNull
         Dim productQuantity As Integer = 1
+        Dim checkOut As Integer = vbNull
 
         While dr.Read
             barCode = dr("Product BarCode")
@@ -42,15 +43,56 @@ Public Class Form3
         End While
         myConnection.Close()
 
-        If barCodePrompt = barCode Or productNamePrompt = productName Then
+        If productPrompt = barCode Or productPrompt = productName Then
+            productQuantity = InputBox("input quantity")
             DataGridView1.Rows.Add(New String() {barCode, productName, productType, productPrice, productQuantity})
-            MsgBox("error")
+            checkOut = productPrice * productQuantity
+            checkArr.Add(checkOut)
         Else
             MsgBox("fail")
         End If
     End Sub
 
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-        MsgBox("Change quantity")
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+        Dim barCodePrompt As String = TextBox1.Text
+        provider = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source="
+        dataFile = "../../db/itemDB.accdb"
+        conString = provider & dataFile
+        myConnection.ConnectionString = conString
+        myConnection.Open()
+        Dim cmd As OleDbCommand = New OleDbCommand("Select * FROM [itemList] WHERE [Product BarCode] = '" & TextBox1.Text & "' ", myConnection)
+        Dim dr As OleDbDataReader = cmd.ExecuteReader
+
+        Dim barCode As String = vbNull
+        Dim productName As String = vbNull
+        Dim productType As String = vbNull
+        Dim productPrice As Integer = vbNull
+        Dim productQuantity As Integer = 1
+        Dim checkOut As Integer = vbNull
+
+        While dr.Read
+            barCode = dr("Product BarCode")
+            productName = dr("Product Name").ToString
+            productType = dr("Product Type").ToString
+            productPrice = dr("Price")
+        End While
+        myConnection.Close()
+
+        If barCodePrompt = barCode Then
+            DataGridView1.Rows.Add(New String() {barCode, productName, productType, productPrice, productQuantity})
+            checkOut = productPrice * productQuantity
+            checkArr.Add(checkOut)
+        Else
+            MsgBox("fail")
+        End If
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim sum As Integer
+        Dim i As Integer
+        For Each i In checkArr
+            sum = sum + i
+        Next i
+        MsgBox(sum.ToString())
     End Sub
 End Class
