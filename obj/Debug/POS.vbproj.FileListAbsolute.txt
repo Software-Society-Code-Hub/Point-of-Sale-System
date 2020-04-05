@@ -2,12 +2,12 @@ D:\VS Community\source\POS\bin\Debug\POS.exe.config
 D:\VS Community\source\POS\bin\Debug\POS.exe
 D:\VS Community\source\POS\bin\Debug\POS.pdb
 D:\VS Community\source\POS\bin\Debug\POS.xml
-D:\VS Community\source\POS\obj\Debug\POS.vbprojAssemblyReference.cache
+D:\VS Community\source\POS\obj\Debug\POS.Form1.resources
+D:\VS Community\source\POS\obj\Debug\POS.Form2.resources
+D:\VS Community\source\POS\obj\Debug\POS.Form3.resources
 D:\VS Community\source\POS\obj\Debug\POS.Resources.resources
 D:\VS Community\source\POS\obj\Debug\POS.vbproj.GenerateResource.cache
 D:\VS Community\source\POS\obj\Debug\POS.exe
 D:\VS Community\source\POS\obj\Debug\POS.xml
 D:\VS Community\source\POS\obj\Debug\POS.pdb
-D:\VS Community\source\POS\obj\Debug\POS.Form1.resources
-D:\VS Community\source\POS\obj\Debug\POS.Form2.resources
-D:\VS Community\source\POS\obj\Debug\POS.Form3.resources
+D:\VS Community\source\POS\obj\Debug\POS.vbprojAssemblyReference.cache
