@@ -33,13 +33,11 @@ Public Class Form3
         Dim productName As String = vbNull
         Dim productType As String = vbNull
         Dim productPrice As Integer = vbNull
-        Dim productQuantity As Integer = 1
         Dim checkOut As Integer = vbNull
 
         While dr.Read
             barCode = dr("Product BarCode")
             productName = dr("Product Name").ToString
-            productType = dr("Product Type").ToString
             productStock = dr("Quantity")
             productPrice = dr("Price")
         End While
@@ -76,13 +74,11 @@ Public Class Form3
         Dim productName As String = vbNull
         Dim productType As String = vbNull
         Dim productPrice As Integer = vbNull
-        Dim productQuantity As Integer = 1
         Dim checkOut As Integer = vbNull
 
         While dr.Read
             barCode = dr("Product BarCode")
             productName = dr("Product Name").ToString
-            productType = dr("Product Type").ToString
             productStock = dr("Quantity")
             productPrice = dr("Price")
         End While
