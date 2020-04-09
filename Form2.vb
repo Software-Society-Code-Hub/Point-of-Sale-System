@@ -7,8 +7,6 @@ Public Class Form2
     Dim myConnection As OleDbConnection = New OleDbConnection
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim userPrompt As String = TextBox1.Text
-        Dim passPrompt As String = TextBox2.Text
         provider = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source="
         dataFile = "../../db/userDB.accdb"
         conString = provider & dataFile
@@ -32,5 +30,9 @@ Public Class Form2
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+
+    Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class

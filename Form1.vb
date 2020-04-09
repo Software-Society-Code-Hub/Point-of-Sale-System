@@ -39,7 +39,6 @@ Public Class Form1
         ElseIf userPrompt = userDB And passPrompt = passDB Then
             currentUser = userDB
             currentPriv = privDB
-            MsgBox("Hello " + currentUser)
             Form3.Show()
         Else
             MsgBox("invalid credentials")
@@ -48,5 +47,9 @@ Public Class Form1
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Form2.Show()
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Form4.Show()
     End Sub
 End Class
