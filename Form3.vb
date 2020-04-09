@@ -52,6 +52,11 @@ Public Class Form3
             checkArr.Add(checkOut)
 
             productStock = productStock - productQuantity
+
+            myConnection.Open()
+            Dim cmdUpdate As OleDbCommand = New OleDbCommand("UPDATE itemList SET[Quantity] = '" & productStock & "' WHERE [Product Name] = '" & productName & "' ", myConnection)
+            Dim drUp As OleDbDataReader = cmdUpdate.ExecuteReader
+            myConnection.Close()
         Else
             MsgBox("fail")
         End If
@@ -78,6 +83,7 @@ Public Class Form3
             barCode = dr("Product BarCode")
             productName = dr("Product Name").ToString
             productType = dr("Product Type").ToString
+            productStock = dr("Quantity")
             productPrice = dr("Price")
         End While
         myConnection.Close()
@@ -86,6 +92,13 @@ Public Class Form3
             DataGridView1.Rows.Add(New String() {barCode, productName, productType, productPrice, productQuantity})
             checkOut = productPrice * productQuantity
             checkArr.Add(checkOut)
+
+            productStock = productStock - productQuantity
+
+            myConnection.Open()
+            Dim cmdUpdate As OleDbCommand = New OleDbCommand("UPDATE itemList SET[Quantity] = '" & productStock & "' WHERE [Product Name] = '" & productName & "' ", myConnection)
+            Dim drUP As OleDbDataReader = cmdUpdate.ExecuteReader
+            myConnection.Close()
         Else
             MsgBox("fail")
         End If
@@ -99,14 +112,5 @@ Public Class Form3
         Next i
         MsgBox("TOTAL: " + sum.ToString())
         DataGridView1.Rows.Clear()
-
-        provider = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source="
-        dataFile = "../../db/itemDB.accdb"
-        conString = provider & dataFile
-        myConnection.ConnectionString = conString
-        myConnection.Open()
-        Dim cmdUpdate As OleDbCommand = New OleDbCommand("UPDATE itemList SET[Quantity] = '" & productStock & "' ", myConnection)
-        Dim dr As OleDbDataReader = cmdUpdate.ExecuteReader
-        myConnection.Close()
     End Sub
 End Class
