@@ -6,6 +6,7 @@ Public Class Form3
     Public currentUser As String = Form1.currentUser
     Public currentPriv As String = Form1.currentPriv
     Public checkArr As New ArrayList
+    Public productStock As Integer = vbNull
 
     Dim provider As String
     Dim dataFile As String
@@ -39,6 +40,7 @@ Public Class Form3
             barCode = dr("Product BarCode")
             productName = dr("Product Name").ToString
             productType = dr("Product Type").ToString
+            productStock = dr("Quantity")
             productPrice = dr("Price")
         End While
         myConnection.Close()
@@ -48,6 +50,8 @@ Public Class Form3
             DataGridView1.Rows.Add(New String() {barCode, productName, productType, productPrice, productQuantity})
             checkOut = productPrice * productQuantity
             checkArr.Add(checkOut)
+
+            productStock = productStock - productQuantity
         Else
             MsgBox("fail")
         End If
@@ -93,6 +97,16 @@ Public Class Form3
         For Each i In checkArr
             sum = sum + i
         Next i
-        MsgBox(sum.ToString())
+        MsgBox("TOTAL: " + sum.ToString())
+        DataGridView1.Rows.Clear()
+
+        provider = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source="
+        dataFile = "../../db/itemDB.accdb"
+        conString = provider & dataFile
+        myConnection.ConnectionString = conString
+        myConnection.Open()
+        Dim cmdUpdate As OleDbCommand = New OleDbCommand("UPDATE itemList SET[Quantity] = '" & productStock & "' ", myConnection)
+        Dim dr As OleDbDataReader = cmdUpdate.ExecuteReader
+        myConnection.Close()
     End Sub
 End Class
