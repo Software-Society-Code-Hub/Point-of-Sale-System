@@ -33,15 +33,19 @@ Public Class Form3
         Dim productName As String = vbNull
         Dim productType As String = vbNull
         Dim productPrice As Integer = vbNull
+        Dim productQuantity As Integer = 1
         Dim checkOut As Integer = vbNull
 
         While dr.Read
             barCode = dr("Product BarCode")
             productName = dr("Product Name").ToString
+            productType = dr("Product Type").ToString
             productStock = dr("Quantity")
             productPrice = dr("Price")
         End While
         myConnection.Close()
+
+        My.Computer.FileSystem.CopyFile("../../db/itemDB.accdb", "../../db/copyItem/itemDBCOPY.accdb", True)
 
         If productPrompt = barCode Or productPrompt = productName Then
             productQuantity = InputBox("input quantity")
@@ -74,11 +78,13 @@ Public Class Form3
         Dim productName As String = vbNull
         Dim productType As String = vbNull
         Dim productPrice As Integer = vbNull
+        Dim productQuantity As Integer = 1
         Dim checkOut As Integer = vbNull
 
         While dr.Read
             barCode = dr("Product BarCode")
             productName = dr("Product Name").ToString
+            productType = dr("Product Type").ToString
             productStock = dr("Quantity")
             productPrice = dr("Price")
         End While
@@ -107,6 +113,14 @@ Public Class Form3
             sum = sum + i
         Next i
         MsgBox("TOTAL: " + sum.ToString())
+        DataGridView1.Rows.Clear()
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
+        My.Computer.FileSystem.CopyFile("../../db/copyItem/itemDBCOPY.accdb", "../../db/itemDB.accdb", Microsoft.VisualBasic.FileIO.UIOption.OnlyErrorDialogs, Microsoft.VisualBasic.FileIO.UICancelOption.DoNothing)
+
+        checkArr.Clear()
         DataGridView1.Rows.Clear()
     End Sub
 End Class
