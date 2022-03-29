@@ -1,3 +1,5 @@
-# POS by Romel D. Zerna Jr and Mel Fatima Fernandez BSIT-1 
-# Default Login
-# User: admin pass: admin
+# Point of Sale system
+A project made with Visual Basic VB.Net on our first year college for school project.
+# Login 
+user: admin 
+pass: admin
